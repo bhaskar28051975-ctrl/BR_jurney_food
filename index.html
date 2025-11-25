@@ -1,1 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BR Journey Food</title>
+<style>
+    body { font-family: Arial, sans-serif; background:#f7f7f7; margin:0; padding:0; }
+    .container { width:95%; max-width:600px; margin:20px auto; background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    .banner { width:100%; border-radius:10px; }
+    h2 { margin-bottom:5px; }
+    .price { font-size:18px; font-weight:bold; color:#0b6; }
+    select { padding:6px; font-size:16px; width:100%; margin-top:5px; }
+    .section { margin-top:20px; }
+    .btn { display:block; width:100%; padding:12px; margin-top:20px; background:#0b6; color:#fff;
+           border-radius:8px; text-align:center; font-size:18px; text-decoration:none; }
+    input, select { padding:8px; width:100%; border:1px solid #ccc; border-radius:6px; font-size:16px; margin-top:8px; }
+    .total-box { background:#eef7ee; padding:10px; border-radius:8px; margin-top:10px; font-size:18px; }
+</style>
+</head>
+<body>
 
+<div class="container">
+    <h1>BR Journey Food</h1>
+
+    <!-- Banner 1 -->
+    <div class="section">
+        <img src="images/bri2.png" class="banner">
+        <h2>Banner 1 Food Item</h2>
+        <div class="price">₹60 per person</div>
+        <label>Select Quantity:</label>
+        <select id="qty1" onchange="calculateTotal()">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <div id="total1" class="total-box">Banner 1 Total: ₹0</div>
+    </div>
+
+    <!-- Banner 2 -->
+    <div class="section">
+        <img src="images/bri3.png" class="banner">
+        <h2>Banner 2 Food Item</h2>
+        <div class="price">₹60 per person</div>
+        <label>Select Quantity:</label>
+        <select id="qty2" onchange="calculateTotal()">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <div id="total2" class="total-box">Banner 2 Total: ₹0</div>
+    </div>
+
+    <!-- Combined Total -->
+    <div class="section">
+        <div id="grandTotal" class="total-box" style="font-size:20px; font-weight:bold;">
+            Grand Total: ₹0
+        </div>
+    </div>
+
+    <!-- Customer Details -->
+    <div class="section">
+        <h2>Delivery Address</h2>
+        <select id="address">
+            <option value="Allipiri">Allipiri</option>
+            <option value="Srivari Padalu">Srivari Padalu</option>
+            <option value="Free bus stop near Railway station">Free bus stop near Railway station</option>
+        </select>
+
+        <h2>Customer Name</h2>
+        <input type="text" id="customerName" placeholder="Enter your name">
+
+        <h2>Phone Number</h2>
+        <input type="text" id="phone" placeholder="Enter phone number">
+    </div>
+
+    <!-- WhatsApp Button -->
+    <a class="btn" href="#" onclick="sendWhatsApp()">Order Now on WhatsApp</a>
+
+</div>
+
+<script>
+function calculateTotal() {
+    let price = 60;
+
+    let q1 = parseInt(document.getElementById("qty1").value);
+    let q2 = parseInt(document.getElementById("qty2").value);
+
+    let t1 = q1 * price;
+    let t2 = q2 * price;
+
+    document.getElementById("total1").innerHTML = "Banner 1 Total: ₹" + t1;
+    document.getElementById("total2").innerHTM
