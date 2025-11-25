@@ -2,114 +2,133 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BR Journey Food</title>
 <style>
-    body { font-family: Arial, sans-serif; background:#f7f7f7; margin:0; padding:0; }
-    .container { width:95%; max-width:600px; margin:20px auto; background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-    .banner { width:100%; border-radius:10px; }
-    h2 { margin-bottom:5px; }
-    .price { font-size:18px; font-weight:bold; color:#0b6; }
-    select { padding:6px; font-size:16px; width:100%; margin-top:5px; }
-    .section { margin-top:20px; }
-    .btn { display:block; width:100%; padding:12px; margin-top:20px; background:#0b6; color:#fff;
-           border-radius:8px; text-align:center; font-size:18px; text-decoration:none; }
-    input, select { padding:8px; width:100%; border:1px solid #ccc; border-radius:6px; font-size:16px; margin-top:8px; }
-    .total-box { background:#eef7ee; padding:10px; border-radius:8px; margin-top:10px; font-size:18px; }
+    body {
+        font-family: Arial, sans-serif;
+        padding: 15px;
+        background: #f2f2f2;
+    }
+    .item-box {
+        background: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    img {
+        width: 100%;
+        border-radius: 10px;
+    }
+    .total-box {
+        padding: 15px;
+        background: #fff;
+        margin-top: 20px;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    button {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        background: green;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    select, input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
 </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>BR Journey Food</h1>
+<h2><b>BR JOURNEY FOOD</b></h2>
 
-    <!-- Banner 1 -->
-    <div class="section">
-        <img src="images/bri2.png" class="banner">
-        <h2>Banner 1 Food Item</h2>
-        <div class="price">₹60 per person</div>
-        <label>Select Quantity:</label>
-        <select id="qty1" onchange="calculateTotal()">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-        </select>
-        <div id="total1" class="total-box">Banner 1 Total: ₹0</div>
-    </div>
+<!-- Banner 1 -->
+<div class="item-box">
+    <img src="images/bri2.png" alt="Banner 1">
+    <p><b>Price: ₹60 per person</b></p>
 
-    <!-- Banner 2 -->
-    <div class="section">
-        <img src="images/bri3.png" class="banner">
-        <h2>Banner 2 Food Item</h2>
-        <div class="price">₹60 per person</div>
-        <label>Select Quantity:</label>
-        <select id="qty2" onchange="calculateTotal()">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-        </select>
-        <div id="total2" class="total-box">Banner 2 Total: ₹0</div>
-    </div>
+    <label><b>Select Quantity</b></label>
+    <select id="qty1" onchange="updateTotal()">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
 
-    <!-- Combined Total -->
-    <div class="section">
-        <div id="grandTotal" class="total-box" style="font-size:20px; font-weight:bold;">
-            Grand Total: ₹0
-        </div>
-    </div>
-
-    <!-- Customer Details -->
-    <div class="section">
-        <h2>Delivery Address</h2>
-        <select id="address">
-            <option value="Allipiri">Allipiri</option>
-            <option value="Srivari Padalu">Srivari Padalu</option>
-            <option value="Free bus stop near Railway station">Free bus stop near Railway station</option>
-        </select>
-
-        <h2>Customer Name</h2>
-        <input type="text" id="customerName" placeholder="Enter your name">
-
-        <h2>Phone Number</h2>
-        <input type="text" id="phone" placeholder="Enter phone number">
-    </div>
-
-    <!-- WhatsApp Button -->
-    <a class="btn" href="#" onclick="sendWhatsApp()">Order Now on WhatsApp</a>
-
+    <p><b>Total: ₹<span id="t1">0</span></b></p>
 </div>
 
+<!-- Banner 2 -->
+<div class="item-box">
+    <img src="images/bri3.png" alt="Banner 2">
+    <p><b>Price: ₹60 per person</b></p>
+
+    <label><b>Select Quantity</b></label>
+    <select id="qty2" onchange="updateTotal()">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+
+    <p><b>Total: ₹<span id="t2">0</span></b></p>
+</div>
+
+<!-- Grand Total Display -->
+<div class="total-box">
+    GRAND TOTAL: ₹<span id="grandTotal">0</span>
+</div>
+
+<h3>Delivery Address</h3>
+<select id="address">
+    <option value="Allipiri">Allipiri</option>
+    <option value="Srivari Padalu">Srivari Padalu</option>
+    <option value="Free bus stop near Railway station">Free bus stop near Railway station</option>
+</select>
+
+<h3>Customer Details</h3>
+<input type="text" id="customerName" placeholder="Enter Your Name">
+<input type="text" id="phone" placeholder="Enter Phone Number">
+
+<button onclick="sendWhatsApp()">Order Now</button>
+
 <script>
-function calculateTotal() {
-    let price = 60;
+function updateTotal() {
+    let q1 = document.getElementById("qty1").value;
+    let q2 = document.getElementById("qty2").value;
 
-    let q1 = parseInt(document.getElementById("qty1").value);
-    let q2 = parseInt(document.getElementById("qty2").value);
-
-    let t1 = q1 * price;
-    let t2 = q2 * price;
-
-    document.getElementById("total1").innerHTML = "Banner 1 Total: ₹" + t1;
-    document.getElementById("total2").innerHTML = "Banner 2 Total: ₹" + t2;
-
+    let t1 = q1 * 60;
+    let t2 = q2 * 60;
     let grand = t1 + t2;
-    document.getElementById("grandTotal").innerHTML = "Grand Total: ₹" + grand;
+
+    document.getElementById("t1").innerText = t1;
+    document.getElementById("t2").innerText = t2;
+    document.getElementById("grandTotal").innerText = grand;
 }
 
 function sendWhatsApp() {
@@ -129,6 +148,7 @@ function sendWhatsApp() {
         return;
     }
 
+    // WhatsApp message format
     let message =
         "BR JOURNEY FOOD ORDER%0A%0A" +
         "Customer Name: " + name + "%0A" +
@@ -142,6 +162,13 @@ function sendWhatsApp() {
     let url = "https://wa.me/919154095125?text=" + message;
 
     window.open(url, "_blank");
+
+    alert("Your order has been sent successfully!");
+
+    // AUTO REFRESH AFTER 1.5 SECONDS
+    setTimeout(function () {
+        location.reload();
+    }, 1500);
 }
 </script>
 
