@@ -106,4 +106,44 @@ function calculateTotal() {
     let t2 = q2 * price;
 
     document.getElementById("total1").innerHTML = "Banner 1 Total: ₹" + t1;
-    document.getElementById("total2").innerHTM
+    document.getElementById("total2").innerHTML = "Banner 2 Total: ₹" + t2;
+
+    let grand = t1 + t2;
+    document.getElementById("grandTotal").innerHTML = "Grand Total: ₹" + grand;
+}
+
+function sendWhatsApp() {
+    let q1 = document.getElementById("qty1").value;
+    let q2 = document.getElementById("qty2").value;
+
+    let t1 = q1 * 60;
+    let t2 = q2 * 60;
+    let grand = t1 + t2;
+
+    let address = document.getElementById("address").value;
+    let name = document.getElementById("customerName").value;
+    let phone = document.getElementById("phone").value;
+
+    if(name === "" || phone === "") {
+        alert("Please enter name and phone number");
+        return;
+    }
+
+    let message =
+        "BR JOURNEY FOOD ORDER%0A%0A" +
+        "Customer Name: " + name + "%0A" +
+        "Phone: " + phone + "%0A" +
+        "Delivery Address: " + address + "%0A%0A" +
+        "Banner 1 Qty: " + q1 + " | Total: ₹" + t1 + "%0A" +
+        "Banner 2 Qty: " + q2 + " | Total: ₹" + t2 + "%0A%0A" +
+        "GRAND TOTAL: ₹" + grand + "%0A%0A" +
+        "Thank you!";
+
+    let url = "https://wa.me/919154095125?text=" + message;
+
+    window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
