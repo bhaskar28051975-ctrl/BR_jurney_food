@@ -1,1 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Admin - BR Journey Food</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="container fade-in">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div class="logo">BR Journey Food — Admin</div>
+      <div><button onclick="adminLoadOrders(document.getElementById('ordersArea'))" style="padding:10px 12px;border-radius:8px;background:linear-gradient(90deg,var(--primary),var(--primary-2));color:#fff;border:none;font-weight:800;cursor:pointer">Refresh</button></div>
+    </div>
 
+    <div id="ordersArea"></div>
+
+    <p style="color:var(--muted);margin-top:12px">Note: This admin uses local browser storage. To share between devices implement a backend (Google Sheets/Firebase).</p>
+    <p><a href="index.html">← Back to Order Page</a></p>
+  </div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
