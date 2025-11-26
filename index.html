@@ -1,1 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BR Journey Food</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
 
+<div class="container fade-in">
+  <div class="logo">BR Journey Food</div>
+
+  <div class="header">
+    <div class="title">BR JOURNEY FOOD</div>
+    <div class="subtitle">Quality · Trust · On-Time Delivery</div>
+    <div class="phone">📞 91540 95125</div>
+  </div>
+
+  <!-- Product 1 -->
+  <div class="card fade-in">
+    <img src="images/bri2.png" alt="Banner 1" class="item-img">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+      <div class="price-tag">₹60 / person</div>
+      <div style="font-weight:700;color:var(--muted)">Banner 1</div>
+    </div>
+
+    <label>Select Quantity</label>
+    <select id="qty1" onchange="renderTotalsOnIndex()">
+      <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+      <option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
+      <option value="8">8</option><option value="9">9</option><option value="10">10</option>
+    </select>
+
+    <p style="margin-top:12px; font-weight:800">Item Total: ₹<span id="t1">0</span></p>
+  </div>
+
+  <!-- Product 2 -->
+  <div class="card fade-in">
+    <img src="images/bri3.png" alt="Banner 2" class="item-img">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+      <div class="price-tag">₹60 / person</div>
+      <div style="font-weight:700;color:var(--muted)">Banner 2</div>
+    </div>
+
+    <label>Select Quantity</label>
+    <select id="qty2" onchange="renderTotalsOnIndex()">
+      <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+      <option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
+      <option value="8">8</option><option value="9">9</option><option value="10">10</option>
+    </select>
+
+    <p style="margin-top:12px; font-weight:800">Item Total: ₹<span id="t2">0</span></p>
+  </div>
+
+  <div class="totals fade-in">GRAND TOTAL: ₹<span id="grandTotal">0</span></div>
+
+  <label>Delivery Address</label>
+  <select id="address">
+    <option value="Allipiri">Allipiri</option>
+    <option value="Srivari Padalu">Srivari Padalu</option>
+    <option value="Free bus stop near Railway station">Free bus stop near Railway station</option>
+  </select>
+
+  <label>Customer Name</label>
+  <input id="customerName" placeholder="Enter your name">
+
+  <label>Phone Number</label>
+  <input id="phone" placeholder="Enter phone number">
+
+  <button class="btn" onclick="openSummaryModal()">View Order Summary & Send</button>
+
+  <div style="display:flex;gap:12px;margin-top:12px">
+    <a class="btn-ghost" href="track.html" style="flex:1;text-align:center">Track Order</a>
+    <a class="btn-ghost" href="admin.html" style="flex:1;text-align:center">Admin Dashboard</a>
+  </div>
+
+  <footer>© 2025 BR Journey Food · Quality • Trust • On-Time Delivery · 📞 91540 95125</footer>
+</div>
+
+<!-- Modal -->
+<div id="backdrop" class="backdrop" aria-hidden="true">
+  <div class="modal">
+    <h3>Order Summary</h3>
+    <div class="muted">Please confirm your details before sending the order on WhatsApp.</div>
+
+    <div class="row"><div>Banner 1 Qty</div><div id="m_qty1">0</div></div>
+    <div class="row"><div>Banner 1 Total</div><div id="m_t1">₹0</div></div>
+    <div class="row"><div>Banner 2 Qty</div><div id="m_qty2">0</div></div>
+    <div class="row"><div>Banner 2 Total</div><div id="m_t2">₹0</div></div>
+    <hr style="margin:10px 0">
+    <div class="row"><div><strong>Grand Total</strong></div><div id="m_grand">₹0</div></div>
+    <div class="row"><div>Delivery</div><div id="m_address">-</div></div>
+    <div class="row"><div>Customer</div><div id="m_customer">-</div></div>
+
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button class="btn-ghost" onclick="closeSummaryModal()">Edit</button>
+      <button class="btn" onclick="confirmOrderFromModal()" style="flex:1">Confirm & Send (WhatsApp)</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
