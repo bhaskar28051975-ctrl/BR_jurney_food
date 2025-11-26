@@ -1,299 +1,272 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>BR Journey Food</title>
-
 <style>
-    body {
-        font-family: "Segoe UI", Arial, sans-serif;
-        padding: 15px;
-        background: #eef2f5;
-        margin: 0;
-    }
+  :root{
+    --primary:#0b66c3;  /* blue */
+    --dark:#09324a;
+    --muted:#9aa9bf;
+    --card:#ffffff;
+    --bg:#eef3f7;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin:0; background:var(--bg); color:var(--dark); -webkit-font-smoothing:antialiased;
+    padding:18px;
+  }
 
-    /* LOGO */
-    .logo-box {
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .logo-img {
-        width: 110px;
-        height: auto;
-        border-radius: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
+  .container{ max-width:920px; margin:0 auto; }
 
-    /* Corporate Header */
-    .header-box {
-        text-align: center;
-        background: linear-gradient(135deg, #002d62, #0056c7);
-        padding: 28px;
-        border-radius: 18px;
-        margin-bottom: 30px;
-        color: white;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-    }
-    .brand-title {
-        font-size: 30px;
-        font-weight: 900;
-        letter-spacing: 1px;
-    }
-    .brand-subtitle {
-        font-size: 14px;
-        margin-top: 5px;
-        opacity: 0.9;
-        font-weight: 500;
-    }
-    .brand-phone {
-        margin-top: 14px;
-        font-size: 20px;
-        font-weight: bold;
-        background: white;
-        color: #003366;
-        display: inline-block;
-        padding: 7px 18px;
-        border-radius: 25px;
-        box-shadow: 0 2px 6px rgba(255,255,255,0.35);
-    }
+  /* Logo + header */
+  .logo {
+    text-align:center; margin-bottom:10px;
+    font-weight:900; font-size:20px; color:var(--dark);
+  }
+  .header {
+    text-align:center; background:linear-gradient(135deg,var(--primary),#1877f2);
+    color:white; padding:22px; border-radius:12px; box-shadow:0 8px 30px rgba(9,50,74,0.12);
+    margin-bottom:20px;
+  }
+  .header .title{ font-size:26px; font-weight:900; letter-spacing:1px;}
+  .header .subtitle{ font-size:13px; opacity:0.95; margin-top:6px; }
+  .header .phone{ margin-top:12px; display:inline-block; background:white; color:var(--dark);
+    padding:8px 14px; border-radius:20px; font-weight:800; box-shadow:0 3px 10px rgba(0,0,0,0.08);}
 
-    /* Product Cards */
-    .item-box {
-        background: white;
-        padding: 18px;
-        border-radius: 16px;
-        margin-bottom: 25px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-        border: 1px solid #e3e7ec;
-    }
-    img {
-        width: 100%;
-        border-radius: 12px;
-        margin-bottom: 10px;
-    }
-    .price-tag {
-        background: #003366;
-        color: white;
-        padding: 4px 12px;
-        display: inline-block;
-        border-radius: 8px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+  /* Item card */
+  .card{
+    background:var(--card); border-radius:12px; padding:14px; margin-bottom:18px;
+    box-shadow:0 10px 30px rgba(10,30,60,0.06); border:1px solid rgba(15,40,80,0.04);
+    transition: transform .22s ease, box-shadow .22s ease;
+  }
+  .card:hover{ transform: translateY(-6px); box-shadow:0 18px 42px rgba(10,30,60,0.10); }
 
-    select, input {
-        width: 100%;
-        padding: 12px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        border-radius: 10px;
-        border: 1px solid #bfc8d3;
-        background: #f9fbfd;
-        font-size: 15px;
-    }
+  .item-img{ width:100%; border-radius:10px; display:block; }
+  .price-tag{ display:inline-block; background:var(--dark); color:white; padding:6px 10px; border-radius:8px; font-weight:800; }
 
-    /* Total Box */
-    .total-box {
-        padding: 20px;
-        background: white;
-        border-radius: 16px;
-        font-size: 20px;
-        font-weight: bold;
-        color: #003366;
-        border: 1px solid #dee3ea;
-        text-align: center;
-        box-shadow: 0 5px 18px rgba(0,0,0,0.07);
-        margin-bottom: 25px;
-    }
+  label{ display:block; margin-top:10px; font-weight:700; color:var(--dark); }
+  select,input{ width:100%; padding:12px; margin-top:8px; border-radius:10px; border:1px solid #d6dfe9; background:#fbfdff; font-size:15px; }
 
-    /* Corporate Button */
-    button {
-        width: 100%;
-        padding: 16px;
-        font-size: 20px;
-        background: #007bff;
-        color: white;
-        border: none;
-        border-radius: 12px;
-        margin-top: 10px;
-        box-shadow: 0 4px 12px rgba(0,123,255,0.3);
-        font-weight: bold;
-    }
+  .totals {
+    background:var(--card); padding:18px; border-radius:12px; text-align:center; font-weight:800;
+    color:var(--dark); font-size:19px; border:1px solid rgba(15,40,80,0.04); box-shadow:0 8px 26px rgba(10,30,60,0.05);
+    margin-bottom:16px;
+  }
 
-    /* FOOTER */
-    .footer {
-        background: #002d62;
-        color: white;
-        text-align: center;
-        padding: 25px;
-        margin-top: 40px;
-        border-radius: 15px 15px 0 0;
-        box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
-    }
+  .btn{
+    display:block; width:100%; background:linear-gradient(90deg,var(--primary),#0a85ff); color:white;
+    padding:14px; border-radius:10px; border:none; font-size:16px; font-weight:800; cursor:pointer;
+    box-shadow:0 8px 26px rgba(11,102,195,0.18);
+  }
+  .btn-ghost{ background:#f5f8fb; color:var(--dark); border-radius:10px; padding:12px; border:1px solid #e6eef8; text-align:center; text-decoration:none; display:block; }
 
-    .footer-title {
-        font-size: 22px;
-        font-weight: 900;
-    }
+  /* fade minimal animation */
+  .fade-in { animation: fadeIn .48s ease both; }
+  @keyframes fadeIn { from{ opacity:0; transform:translateY(8px) } to{ opacity:1; transform:none } }
 
-    .footer-tag {
-        font-size: 13px;
-        opacity: 0.9;
-        margin-top: 4px;
-    }
+  /* Modal (order summary) */
+  .backdrop{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+    background:rgba(6,14,30,0.45); z-index:999; opacity:0; visibility:hidden; transition:opacity .18s; padding:18px; }
+  .modal{ width:100%; max-width:540px; background:white; border-radius:12px; padding:18px; box-shadow:0 18px 60px rgba(10,30,60,0.18); transform:translateY(8px); transition:transform .18s; }
+  .modal h3{ margin:0 0 6px; color:var(--dark); }
+  .row{ display:flex; justify-content:space-between; margin:8px 0; font-weight:700; }
+  .muted{ color:var(--muted); font-weight:500; font-size:13px; margin-bottom:8px; }
 
-    .footer-phone {
-        margin-top: 10px;
-        font-size: 18px;
-        font-weight: bold;
-        background: white;
-        color: #002d62;
-        padding: 6px 15px;
-        border-radius: 20px;
-        display: inline-block;
-        box-shadow: 0 2px 6px rgba(255,255,255,0.3);
-    }
+  /* footer */
+  footer{ text-align:center; margin-top:22px; color:var(--muted); font-size:13px; }
 
-    .copy {
-        margin-top: 15px;
-        font-size: 12px;
-        opacity: 0.7;
-    }
+  /* small screens */
+  @media (min-width:900px){ .container{ padding:0 10px; } }
 </style>
 </head>
-
 <body>
+  <div class="container fade-in">
+    <div class="logo">BR Journey Food</div>
 
-<!-- LOGO -->
-<div class="logo-box">
-    <img src="images/logo.png" class="logo-img" alt="BR Journey Food Logo">
-</div>
+    <div class="header">
+      <div class="title">BR JOURNEY FOOD</div>
+      <div class="subtitle">Quality · Trust · On-Time Delivery</div>
+      <div class="phone">📞 91540 95125</div>
+    </div>
 
-<!-- HEADER -->
-<div class="header-box">
-    <div class="brand-title">BR JOURNEY FOOD</div>
-    <div class="brand-subtitle">Quality • Trust • On-Time Delivery</div>
-    <div class="brand-phone">📞 91540 95125</div>
-</div>
+    <!-- Product 1 -->
+    <div class="card fade-in">
+      <img src="images/bri2.png" alt="Banner 1" class="item-img">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+        <div class="price-tag">₹60 / person</div>
+        <div style="font-weight:700;color:var(--muted)">Banner 1</div>
+      </div>
 
-<!-- PRODUCT 1 -->
-<div class="item-box">
-    <img src="images/bri2.png" alt="Banner 1">
-    <div class="price-tag">₹60 per person</div>
-
-    <label><b>Select Quantity</b></label>
-    <select id="qty1" onchange="updateTotal()">
+      <label>Select Quantity</label>
+      <select id="qty1" onchange="renderTotals()">
         <option value="0">0</option>
-        <option value="1">1</option><option value="2">2</option>
-        <option value="3">3</option><option value="4">4</option>
-        <option value="5">5</option><option value="6">6</option>
-        <option value="7">7</option><option value="8">8</option>
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+        <option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
         <option value="9">9</option><option value="10">10</option>
+      </select>
+
+      <p style="margin-top:12px; font-weight:800">Item Total: ₹<span id="t1">0</span></p>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="card fade-in">
+      <img src="images/bri3.png" alt="Banner 2" class="item-img">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+        <div class="price-tag">₹60 / person</div>
+        <div style="font-weight:700;color:var(--muted)">Banner 2</div>
+      </div>
+
+      <label>Select Quantity</label>
+      <select id="qty2" onchange="renderTotals()">
+        <option value="0">0</option>
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+        <option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+        <option value="9">9</option><option value="10">10</option>
+      </select>
+
+      <p style="margin-top:12px; font-weight:800">Item Total: ₹<span id="t2">0</span></p>
+    </div>
+
+    <div class="totals fade-in">GRAND TOTAL: ₹<span id="grandTotal">0</span></div>
+
+    <label>Delivery Address</label>
+    <select id="address">
+      <option value="Allipiri">Allipiri</option>
+      <option value="Srivari Padalu">Srivari Padalu</option>
+      <option value="Free bus stop near Railway station">Free bus stop near Railway station</option>
     </select>
 
-    <p><b>Total: ₹<span id="t1">0</span></b></p>
-</div>
+    <label>Customer Name</label>
+    <input id="customerName" placeholder="Enter your name">
 
-<!-- PRODUCT 2 -->
-<div class="item-box">
-    <img src="images/bri3.png" alt="Banner 2">
-    <div class="price-tag">₹60 per person</div>
+    <label>Phone Number</label>
+    <input id="phone" placeholder="Enter phone number">
 
-    <label><b>Select Quantity</b></label>
-    <select id="qty2" onchange="updateTotal()">
-        <option value="0">0</option>
-        <option value="1">1</option><option value="2">2</option>
-        <option value="3">3</option><option value="4">4</option>
-        <option value="5">5</option><option value="6">6</option>
-        <option value="7">7</option><option value="8">8</option>
-        <option value="9">9</option><option value="10">10</option>
-    </select>
+    <button class="btn" onclick="openSummary()">View Order Summary & Send</button>
 
-    <p><b>Total: ₹<span id="t2">0</span></b></p>
-</div>
+    <div style="display:flex;gap:12px;margin-top:12px">
+      <a class="btn-ghost" href="track.html" style="flex:1;text-align:center">Track Order</a>
+      <a class="btn-ghost" href="admin.html" style="flex:1;text-align:center">Admin Dashboard</a>
+    </div>
 
-<!-- GRAND TOTAL -->
-<div class="total-box">
-    GRAND TOTAL: ₹<span id="grandTotal">0</span>
-</div>
+    <footer>© 2025 BR Journey Food · Quality • Trust • On-Time Delivery · 📞 91540 95125</footer>
+  </div>
 
-<!-- ADDRESS -->
-<h3>Delivery Address</h3>
-<select id="address">
-    <option value="Allipiri">Allipiri</option>
-    <option value="Srivari Padalu">Srivari Padalu</option>
-    <option value="Free bus stop near Railway station">Free bus stop near Railway station</option>
-</select>
+  <!-- Modal -->
+  <div id="backdrop" class="backdrop" aria-hidden="true">
+    <div class="modal">
+      <h3>Order Summary</h3>
+      <div class="muted">Please confirm your details before sending the order on WhatsApp.</div>
 
-<!-- CUSTOMER DETAILS -->
-<h3>Customer Details</h3>
-<input type="text" id="customerName" placeholder="Enter Your Name">
-<input type="text" id="phone" placeholder="Enter Phone Number">
+      <div class="row"><div>Banner 1 Qty</div><div id="m_qty1">0</div></div>
+      <div class="row"><div>Banner 1 Total</div><div id="m_t1">₹0</div></div>
+      <div class="row"><div>Banner 2 Qty</div><div id="m_qty2">0</div></div>
+      <div class="row"><div>Banner 2 Total</div><div id="m_t2">₹0</div></div>
+      <hr style="margin:10px 0">
+      <div class="row"><div><strong>Grand Total</strong></div><div id="m_grand">₹0</div></div>
+      <div class="row"><div>Delivery</div><div id="m_address">-</div></div>
+      <div class="row"><div>Customer</div><div id="m_customer">-</div></div>
 
-<button onclick="sendWhatsApp()">Order Now</button>
+      <div style="display:flex;gap:10px;margin-top:14px">
+        <button class="btn-ghost" onclick="closeSummary()">Edit</button>
+        <button class="btn" onclick="confirmOrder()" style="flex:1">Confirm & Send (WhatsApp)</button>
+      </div>
+    </div>
+  </div>
 
 <script>
-function updateTotal() {
-    let q1 = document.getElementById("qty1").value;
-    let q2 = document.getElementById("qty2").value;
+  const PRICE = 60;
 
-    let t1 = q1 * 60;
-    let t2 = q2 * 60;
-    let grand = t1 + t2;
+  function renderTotals(){
+    const q1 = Number(document.getElementById('qty1').value || 0);
+    const q2 = Number(document.getElementById('qty2').value || 0);
+    const t1 = q1 * PRICE;
+    const t2 = q2 * PRICE;
+    const grand = t1 + t2;
+    document.getElementById('t1').innerText = t1;
+    document.getElementById('t2').innerText = t2;
+    document.getElementById('grandTotal').innerText = grand;
+  }
 
-    document.getElementById("t1").innerText = t1;
-    document.getElementById("t2").innerText = t2;
-    document.getElementById("grandTotal").innerText = grand;
-}
+  function openSummary(){
+    renderTotals();
+    const q1 = Number(document.getElementById('qty1').value || 0);
+    const q2 = Number(document.getElementById('qty2').value || 0);
+    const t1 = q1 * PRICE;
+    const t2 = q2 * PRICE;
+    const grand = t1 + t2;
+    const address = document.getElementById('address').value;
+    const name = document.getElementById('customerName').value || '-';
+    const phone = document.getElementById('phone').value || '-';
 
-function sendWhatsApp() {
-    let q1 = document.getElementById("qty1").value;
-    let q2 = document.getElementById("qty2").value;
+    document.getElementById('m_qty1').innerText = q1;
+    document.getElementById('m_t1').innerText = '₹' + t1;
+    document.getElementById('m_qty2').innerText = q2;
+    document.getElementById('m_t2').innerText = '₹' + t2;
+    document.getElementById('m_grand').innerText = '₹' + grand;
+    document.getElementById('m_address').innerText = address;
+    document.getElementById('m_customer').innerText = name + ' • ' + phone;
 
-    let t1 = q1 * 60;
-    let t2 = q2 * 60;
-    let grand = t1 + t2;
+    const bd = document.getElementById('backdrop');
+    bd.style.opacity = '1'; bd.style.visibility = 'visible';
+    bd.setAttribute('aria-hidden','false');
+  }
 
-    let address = document.getElementById("address").value;
-    let name = document.getElementById("customerName").value;
-    let phone = document.getElementById("phone").value;
+  function closeSummary(){
+    const bd = document.getElementById('backdrop');
+    bd.style.opacity = '0'; bd.style.visibility = 'hidden';
+    bd.setAttribute('aria-hidden','true');
+  }
 
-    if(name === "" || phone === "") {
-        alert("Please enter name and phone number");
-        return;
+  function confirmOrder(){
+    const q1 = Number(document.getElementById('qty1').value || 0);
+    const q2 = Number(document.getElementById('qty2').value || 0);
+    const t1 = q1 * PRICE;
+    const t2 = q2 * PRICE;
+    const grand = t1 + t2;
+    const address = document.getElementById('address').value;
+    const name = document.getElementById('customerName').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    if(!name || !phone){
+      alert('Please enter name and phone number before confirming.');
+      return;
     }
 
-    let message =
-        "BR JOURNEY FOOD ORDER%0A%0A" +
-        "Customer Name: " + name + "%0A" +
-        "Phone: " + phone + "%0A" +
-        "Delivery Address: " + address + "%0A%0A" +
-        "Banner 1 Qty: " + q1 + " | Total: ₹" + t1 + "%0A" +
-        "Banner 2 Qty: " + q2 + " | Total: ₹" + t2 + "%0A%0A" +
-        "GRAND TOTAL: ₹" + grand + "%0A%0A" +
-        "Thank you!";
+    const order = {
+      id: 'BR' + Date.now(),
+      createdAt: new Date().toISOString(),
+      name, phone, address,
+      items: [
+        { sku:'banner1', qty:q1, total:t1 },
+        { sku:'banner2', qty:q2, total:t2 }
+      ],
+      grandTotal: grand,
+      status: 'Pending'
+    };
 
-    let url = "https://wa.me/919154095125?text=" + message;
+    const raw = localStorage.getItem('br_orders');
+    const arr = raw ? JSON.parse(raw) : [];
+    arr.unshift(order);
+    localStorage.setItem('br_orders', JSON.stringify(arr));
 
-    window.open(url, "_blank");
+    const message = encodeURIComponent(
+      `BR JOURNEY FOOD ORDER\n\nCustomer Name: ${name}\nPhone: ${phone}\nDelivery Address: ${address}\n\nBanner 1 Qty: ${q1} | Total: ₹${t1}\nBanner 2 Qty: ${q2} | Total: ₹${t2}\n\nGRAND TOTAL: ₹${grand}\n\nOrder ID: ${order.id}\nThank you!`
+    );
 
-    alert("Your order has been sent successfully!");
+    const wa = 'https://wa.me/919154095125?text=' + message;
+    window.open(wa, '_blank');
 
-    setTimeout(function () {
-        location.reload();
-    }, 1500);
-}
+    closeSummary();
+    alert('Order saved and WhatsApp opened. Order ID: ' + order.id);
+    setTimeout(()=> location.reload(), 1200);
+  }
+
+  // init
+  document.addEventListener('DOMContentLoaded', renderTotals);
 </script>
-
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-title">BR JOURNEY FOOD</div>
-    <div class="footer-tag">Quality • Trust • On-Time Delivery</div>
-    <div class="footer-phone">📞 91540 95125</div>
-    <p class="copy">© 2025 BR Journey Food. All Rights Reserved.</p>
-</footer>
-
 </body>
 </html>
